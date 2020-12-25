@@ -5,8 +5,9 @@ const { send } = require("process");
 
 // Setup empty JS object to act as endpoint for all routes
 projectData = {
-    zip: '37211',
-    feelings: 'I am feeling good!'
+    date: "12.25.2020",
+    temp: -6.3,
+    feeling: "i am feeling good"
 };
 
 // Require Express to run server and routes
@@ -39,20 +40,20 @@ function listening() {
     console.log(`server running on port ${port}`);
 }
 
-const data = [];
+data = {};
 
-app.get('/home',(req, res)=> {
+app.get('/',(req, res)=> {
     res.send(projectData)
 });
 
 app.post('/addData',(req, res)=> {
-    data.length = 0;
+    // data.length = 0;
     newEntry = {
         date: req.body.date,
         temp: req.body.temp,
         feeling: req.body.feeling
     }
-    data.push(newEntry);
+    data = newEntry;
     res.send(data);
     // console.log(data);      
 })
